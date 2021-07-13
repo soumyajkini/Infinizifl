@@ -29,8 +29,6 @@
          (next-paths (reverse (cdr paths))  (cons (car reachable-paths) next-paths)))
         ((or (null reachable-paths)
              (funcall pred (caar reachable-paths)))
-         (write reachable-paths) (terpri)
-         (write next-paths) (terpri)
          (if (null reachable-paths)
              (bfs (reverse next-paths) pred gen)
            (car reachable-paths))))))
@@ -38,7 +36,6 @@
 ;;Don't create paths until you know you need them. If you see the goal. only one path is needed. If not, then you need them
 
 (defun shortest-path (start end net)
-  (write (list (list start))) (terpri)
   (reverse (bfs
             (list (list start))
             (lambda (state) (eql state end))
